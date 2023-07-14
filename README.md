@@ -4,8 +4,8 @@ Script, inputs e outputs dos métodos do meu projeto de mestrado que estima a co
 ##### Links para as tabelas:
 
 _Inputs_
-* [tabela_de_distancias2.txt](https://drive.google.com/file/d/12XSipsW-TOZ9ucM5dVmodF_eJxEs4Nki/view?usp=sharing)
+* [tabela_de_distancias3.txt](https://drive.google.com/file/d/16BDwc_4BRkgj-jHoTQ2ofQ6JiWKV1oQ5/view?usp=drive_link)
 
 _Outputs_
-* [Tabela.txt](https://drive.google.com/file/d/1FLuzbzv8kIflV1kVjcdwO8YkccB8iiCY/view?usp=sharing)
+* [Tabela1.txt](https://drive.google.com/file/d/1pEdSNbT5rXknEZLmX4gMoxdcMdy7_Q3Y/view?usp=sharing)
 
