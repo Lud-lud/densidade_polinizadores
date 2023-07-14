@@ -1,4 +1,4 @@
-setwd("C:/Users/Ludmila/Desktop/Luisa")
+setwd("C:/Users/Pc/Desktop/Ludmila/Teste_densidade")
 
 
 #Esse script foi produzido para calcular a densidade média de polinizadores por
@@ -6,7 +6,7 @@ setwd("C:/Users/Ludmila/Desktop/Luisa")
 #habitat natural
 
 
-TABELA_PIXEIS <- read.table(file.choose(), header=T) #tabela_de_distancias2.txt
+TABELA_PIXEIS <- read.table(file.choose(), header=T) #tabela_de_distancias3.txt
 adeq <- read.csv("Polin_laranja3.csv") #Polin_laranja3.csv
 fordis <- read.csv("Tabela_dist_for_spp.csv") #Tabela_dist_for_spp.csv
 
@@ -90,8 +90,9 @@ Tabela <- merge(TABELA_PIXEIS, teste, by = intersect(names(TABELA_PIXEIS)), name
 
 
 
-write.table(Tabela, file="Tabela.txt")
 
+write.table(Tabela, file="Tabela1.txt")
+read.table("Tabela1.txt")
 
 #1.3 Para cada pixel da TABELA_PIXEIS, calcular a densidade de cada espécie de polinizador 'a'
 #com a seguinte formula
@@ -192,9 +193,22 @@ Densidade_Total <- aggregate(densTotal ~ x + y, Tabela, sum)
 #caso todas as espécies de polinizadores nidificassem bem em todas as classes de paisagem: 
 #riqueza_maxima*numero de classes de paisagem)
 
-valor_maximo=21*6 #(21 especies Amel + Tspin e 6 classes)
 
-Densidade_Total$F=Densidade_Total$densTotal/valor_maximo
+
+
+valor_maximo <- length(nome) # riqueza de espécies
+
+for (j in 1:length(Densidade_Total$densTotal)) {
+  if (Densidade_Total$densTotal[j] >= valor_maximo) {
+    Densidade_Total$F[j] <- 1
+  } else {
+    Densidade_Total$F[j] <- Densidade_Total$densTotal[j] / valor_maximo
+  }
+}
+
+
+
+#Densidade_Total$F=Densidade_Total$densTotal/valor_maximo
 
 
 #TABELA_PIXEIS_DensTotal$F=TABELA_PIXEIS_DensTotal$Total/valor_maximo
@@ -208,9 +222,9 @@ Densidade_Total$F=Densidade_Total$densTotal/valor_maximo
 # V = PC/ (nrow(TABELA_PIXEIS_DensTotal)+D*(sum(TABELA_PIXEIS_DensTotal$F)))
 
 #parametros
-QPT=14212000 #quantidade produzida total (kg)
+QPT=28570000 #quantidade produzida total (kg) em 2021
 
-VPT= 7213000 #valor de produção total (reais)
+VPT= 18571000 #valor de produção total (reais) em 2021
 
 #Taxas de dependência com base em Siopa 2023:
 
@@ -266,7 +280,7 @@ resultados[3, c(3:5)] <- Contr_polin_QPT_perc(QPT, c(resultados[1,3],
                           resultados[1,4], resultados[1,5]))
 
 
-write.csv(resultados, file="contr_poli_laranja.csv")
+write.csv(resultados, file="contr_poli_laranja_2021.csv")
 
 #mediana da distância de forrageamento dos polinizadores
 median(fordis$fordist_m_GrMfd)
